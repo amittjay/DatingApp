@@ -30,6 +30,7 @@ namespace DatingApp.Controllers
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await UserExist(registerDto.Username)) return BadRequest("username is taken");
+            
             using var hmac = new HMACSHA512();
             var user = new AppUsers
             {

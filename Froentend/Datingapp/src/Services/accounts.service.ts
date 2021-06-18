@@ -26,13 +26,18 @@ export class AccountsService {
     )
   }
   register(model: any) {
+    debugger;
     return this.http.post<Users>(this.baseUrl + 'Account/Register', model).pipe(
       map((user: Users) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user))
-          this.currentUserSource.next(user);
+         this.SetCurrentuser(user);
+         //this.presence.createHubConnection(user);
         }
-        return user;
+        else{
+          console.log(user);
+          
+        }
       })
     )
   }
